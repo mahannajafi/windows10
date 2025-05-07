@@ -1,54 +1,126 @@
-# React + TypeScript + Vite
+# 🪟 React‑Windows‑Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A **2025‑grade recreation of the Windows 11 desktop** right in your browser. Built with **React 19 + TypeScript**, styled using **Tailwind CSS v4**, and powered by **Zustand** & **TanStack Query** for slick state management.
 
-Currently, two official plugins are available:
+![screenshot](public/assets/desktop-preview.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Draggable & resizable windows with smooth **Framer Motion** animations
+- Translucent taskbar and acrylic “Aero Glass” wallpaper blur (CSS `backdrop-filter`)
+- Start menu, File Explorer, and Notepad micro‑apps
+- Fast dev experience via **Vite 5** and optional **Bun** runtime
+- **PWA installable** – runs full‑screen like a native OS
+- Ready for **Tauri** wrapping to ship a real desktop executable
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## 🖥️ Tech Stack
+
+| Layer        | Tech                                           |
+| ------------ | ---------------------------------------------- |
+| UI Framework | React 19, TypeScript 5.5                       |
+| Styling      | Tailwind CSS v4, shadcn/ui, Lucide icons       |
+| Animations   | Framer Motion 11                               |
+| State        | Zustand 5 (local), TanStack Query 5.7 (server) |
+| Build Tool   | Vite 5 (HMR) / Bun 1.2+                        |
+| Testing      | Vitest 2, Playwright 1.45                      |
+| Packaging    | Vercel Edge / Netlify, Tauri 2                 |
+
+---
+
+## 🚀 Quick Start
+
+```bash
+# 1 · Clone repo
+git clone https://github.com/mahannajafi/windows10.git
+cd windows10
+
+# 2 · Install deps (pnpm recommended)
+pnpm i   # or: bun install
+
+# 3 · Run dev server
+pnpm dev # or: bun run dev
+
+# 4 · Open <http://localhost:5173>
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+> **Node ≥ 20 or Bun ≥ 1.2** required (for Web‑Crypto support).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Build for production
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+pnpm build        # outputs to /dist
+pnpm preview      # local static server
 ```
+
+---
+
+## 📂 Project Structure
+
+```
+src/
+├─ app/             # entry points & global providers
+├─ shared/          # reusable UI & helpers
+├─ entities/        # domain models (Window, File, …)
+├─ features/        # user‑facing apps (taskbar, explorer, notepad)
+├─ workers/         # Web Workers / WASM helpers
+└─ styles/          # tailwind.css and layers
+```
+
+See [`docs/folder-structure.md`](docs/folder-structure.md) for full details.
+
+---
+
+## 🛠️ Useful Scripts
+
+| Script          | Purpose                   |
+| --------------- | ------------------------- |
+| `pnpm dev`      | Start dev server with HMR |
+| `pnpm build`    | Production build (Vite)   |
+| `pnpm preview`  | Serve built files locally |
+| `pnpm test`     | Run unit tests (Vitest)   |
+| `pnpm test:e2e` | Playwright E2E suite      |
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] Window snapping & tiling (Win‑11 style)
+- [ ] Task View (virtual desktops) animation
+- [ ] File System Access API integration
+- [ ] Theming: light/dark & high‑contrast
+- [ ] Multi‑monitor support (🔮)
+
+See the [issues](https://github.com/mahannajafi/windows10/issues) tab for up‑to‑date tasks.
+
+---
+
+## 🤝 Contributing
+
+1. Fork the project & create your branch: `git checkout -b feat/awesome`
+2. Commit your changes: `git commit -m "feat: add awesome feature"`
+3. Push to your branch: `git push origin feat/awesome`
+4. Open a Pull Request 🍻
+
+All contributions—code, documentation, design—are welcome!
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** – see the [`LICENSE`](LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgements
+
+- Microsoft Windows 11 for inspiration
+- Radix UI & shadcn/ui for accessible component primitives
+- TanStack & Framer Motion teams for incredible OSS
+
+---
+
+> **Made with ❤️ and ☕ by [@mahannajafi](https://github.com/mahannajafi)**
