@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.tsx
+import { Suspense } from "react";
+import Window from "./entities/window";
+import TaskBar from "./entities/TaskBar";
+import background from "./assets/imgs/defaultBackGround.webp";
 
-function App() {
-  const [count, setCount] = useState(0)
+const demoWindows = [
+  { id: 1, title: "File Explorer", x: 60, y: 60 },
+  { id: 2, title: "Notepad", x: 320, y: 120 },
+];
 
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <main
+      className="fixed inset-0 overflow-hidden select-none" // fills viewport, no scroll
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {demoWindows.map(({ id, title, x, y }) => (
+        <Suspense key={id} fallback={null}>
+          <Window title={title} initialPosition={{ x, y }}>
+            <p className="text-sm whitespace-pre">
+              {title === "File Explorer"
+                ? "📁 Documents\n📁 Pictures\n📄 resume.pdf"
+                : "Hello Windows-clone!"}
+            </p>
+          </Window>
+        </Suspense>
+      ))}
 
-export default App
+      <TaskBar />
+    </main>
+  );
+}
